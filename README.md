@@ -1,47 +1,36 @@
-Koledar z dogodki
+# Calendar (Desktop Calendar App)
 
-1 Uvod
+A desktop calendar application built with Python and Tkinter. It features a Slovenian graphical user interface, allowing users to navigate through months, schedule events, and receive background desktop notifications.
 
-Projekt predstavlja namizno aplikacijo za upravljanje osebnih dogodkov
-preko koledarja. Uporabnik lahko znotraj intuitivnega grafičnega
-vmesnika izbere datum, doda dogodek z imenom, opisom in časom, nato pa
-ob določenem trenutku prejme obvestilo. Aplikacija je razvita v
-programskem jeziku Python s pomočjo knjižnice Tkinter in modula za
-sistemska obvestila Plyer.
+## Features
 
-Delovanje aplikacije :
+* **Interactive UI:** Navigate between months and view the current time and date in real-time.
+* **Event Creation:** Select any day to add an event with a custom title, description, and specific time.
+* **Event Management:** View all scheduled events in a dedicated window and delete them as needed.
+* **Desktop Reminders:** A background process monitors your scheduled events and triggers a system notification when the time arrives.
+* **Persistent Storage:** All events are automatically saved to a local JSON file (`events.json`) to persist between sessions.
 
-2 Glavno okno (main.py)
+## Prerequisites
 
-Glavni program prikazuje trenutno uro, dan in mesečni koledar. Uporabnik
-lahko s puščicama navigira med meseci. Z miškino izbiro dneva se
-omogočita gumba za ogled in dodajanje dogodkov. Dnevi se obarvajo, da je
-trenutni dan označen, izbrani dan pa izstopa vizualno.
+Ensure you have Python 3 installed on your system. This project also relies on an external library for desktop notifications.
 
-3 Dodajanje dogodka (add_event.py)
+## Getting Started
 
-Uporabnik lahko dogodku dodeli ime, opis in čas (ure, minute). Po
-potrditvi se dogodek shrani v datoteko \'events.json\'. Vsakemu dogodku
-se samodejno dodeli edinstven identifikator (UUID). Ob uspešni oddaji se
-v ozadju zažene program reminder.py, ki skrbi za opomnike.
+1. **Clone or Download the Repository**
+2. **Install Dependencies:**
+   Open your terminal in the project directory and install the required notification library:
+   ```bash
+   pip install plyer
+   ```
+3. **Run the Application:**
+   Start the main graphical interface:
+   ```bash
+   python main.py
+   ```
 
-4 Prikaz dogodkov (events_list.py)
+## Project Structure
 
-Vsi dogodki iz datoteke \'events.json\' se izpišejo v posebnem oknu.
-Uporabnik ima možnost dogodke izbrisati. Dogodki se prikažejo v
-kronološkem zaporedju in vsebujejo ime, datum, uro in opis.
-
-5 Opomniki (reminder.py)
-
-Skripta reminder.py se izvaja v ozadju in vsako sekundo preverja, ali je
-čas za kateri od dogodkov. Če se trenutni čas ujema z dogodkom, se
-prikaže sistemsko obvestilo s pomočjo knjižnice Plyer. Vsak opomnik se
-prikaže le enkrat (preverjanje na podlagi ID-ja dogodka).
-
-6 Zaključek
-
-Projekt Koledar je enostavna, a funkcionalna aplikacija za organizacijo
-dogodkov. Združuje osnovne funkcionalnosti koledarja s shranjevanjem in
-opominjanjem, kar je koristno za vsakodnevno uporabo. Možnost razširitve
-vključuje sinhronizacijo z zunanjo bazo, dodajanje ponavljajočih
-dogodkov ter izboljšan uporabniški vmesnik.
+* **`main.py`**: The core application file containing the Tkinter GUI, clock updates, and calendar rendering.
+* **`add_event.py`**: Handles the form for creating new events, saving the data to JSON, and triggering the background reminder script.
+* **`events_list.py`**: Manages the interface for listing all saved events sequentially and provides the logic for event deletion.
+* **`reminder.py`**: Runs continuously in the background, checking the current system time against the `events.json` database to issue alerts.
